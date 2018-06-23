@@ -1,19 +1,17 @@
-import scrapy 
-import json
-from scrapy.http import Request
-from scrapy.shell import inspect_response
-from forbes.items import ForbesItem
-# from shopify_app.items import ShopifyWebsiteItem
 import sys
+import json
+import scrapy 
+from scrapy.http import Request
+from forbes.items import ForbesItem
+
 
 class ForbesSpider(scrapy.Spider):
   custom_settings = {
-   # 'FEED_EXPORT_FIELDS' : ['position','name','lastName', 'age', 'country','gender', 'wealthSource', 'industry',
-    #  'worth','worthChange', 'realTimeWorth', 'realTimePosition', 'image']
+    'FEED_EXPORT_FIELDS' : ['position','name','lastName', 'age', 'country','gender', 'wealthSource', 'industry',
+    'worth','worthChange', 'realTimeWorth', 'realTimePosition', 'image']
       
        }
   name= 'forbes'
- 
  
   domain = 'https://www.forbes.com/'
   
@@ -85,6 +83,7 @@ class ForbesSpider(scrapy.Spider):
       item['realTimePosition'] = real_time_position
       item['position'] = position
       item['realTimeWealth'] = real_time_worth
+      
       yield item
         
         
